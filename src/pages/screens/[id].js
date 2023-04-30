@@ -70,7 +70,7 @@ const Screen = ({id}) => {
       <div className="h-full w-full mb-6 py-6 ">
         <div className="flex flex-wrap lg:flex-nowrap py-6 w-full gap-6 relative">
           <div className="w-full lg:w-8/12 lg:px-4 space-detail">
-            <div className="relative block w-full h-44 overflow-hidden object-cover  rounded-lg">
+            <div className="relative block w-full h-96 max-h-full overflow-hidden object-cover  rounded-lg">
               <Image
                 src={'/img/demo.png'}
                 fill

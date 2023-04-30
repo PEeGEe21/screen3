@@ -15,13 +15,15 @@ import React from 'react';
 import DropdownIcon from '../../components/Icons/DropdownIcon';
 import ListIcon from '../../components/Icons/ListIcon';
 import MoreHoriIcon from '../../components/Icons/MoreHoriIcon';
-
 import Layout from '../../components/Layout/Layout';
 import EmptyState from '../../components/EmptyState';
-import { ScreenData } from '../../utils/data';
+import { ScreenData, coloredArray, colors, Tags } from '../../utils/data';
 import DotsDropdown from '../../components/Dropdowns/DotsDropdown';
+import TagsDropdown from '../../components/Dropdowns/TagsDropdown';
 
 const Dashboard = () => {
+  console.log(coloredArray, "coloredArray")
+
   return (
     <div className="">
       <div className="grow py-2">
@@ -29,12 +31,7 @@ const Dashboard = () => {
       </div>
       <div className="w-full flex items-start md:items-center justify-between py-3  flex-wrap md:flex-row flex-col md:gap-0 gap-3">
         <div className=" font-normal flex items-start flex-row gap-3">
-          <button className="flex items-center text-[#344054] bg-white text-sm border-[#D5D5D6] border px-3 py-2 rounded-lg h-10 gap-2">
-            Tags
-            <span className="mr-2">
-              <DropdownIcon />
-            </span>
-          </button>
+          <TagsDropdown/>
           <button className="flex items-center text-[#344054] bg-white text-sm border-[#D5D5D6] border mt-0 md:mt-0 px-3 py-2 rounded-lg h-10  gap-2">
             Date
             <span className="mr-2">
