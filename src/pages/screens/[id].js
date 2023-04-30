@@ -34,7 +34,7 @@ const Screen = ({id}) => {
       console.log(screen, "screen");
     }
 
-  });
+  }, [id, screen]);
   return (
     <div className="">
       <div className="w-full flex items-start md:items-center justify-between py-2  flex-wrap md:flex-row flex-col md:gap-0 gap-3">
