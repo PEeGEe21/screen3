@@ -79,6 +79,7 @@ export default function DotsDropdown({ item }) {
       ScreenData.splice(screen_find, 1);
       console.log('deleted...');
       console.log(ScreenData, 'ScreenData');
+      handleClose()
       router.push('/');
     }
   };
