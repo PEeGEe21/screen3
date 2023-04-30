@@ -1,19 +1,19 @@
 import React from 'react';
 
-const TagsIcon = ({height, width}) => {
+const AddIcon = () => {
   return (
     <>
       <svg
-        width={width}
-        height={height}
-        viewBox="0 0 20 22"
+        width="23"
+        height="22"
+        viewBox="0 0 23 22"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M11 1L1 13H10L9 21L19 9H10L11 1Z"
+          d="M7.5 11H15.5M11.5 15V7M11.5 21C17 21 21.5 16.5 21.5 11C21.5 5.5 17 1 11.5 1C6 1 1.5 5.5 1.5 11C1.5 16.5 6 21 11.5 21Z"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -22,4 +22,4 @@ const TagsIcon = ({height, width}) => {
   );
 };
 
-export default TagsIcon;
+export default AddIcon;
