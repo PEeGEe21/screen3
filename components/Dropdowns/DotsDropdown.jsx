@@ -74,17 +74,17 @@ export default function DotsDropdown({ item }) {
     // console.log(item.id, 'item.id');
 
     // return;
-    const screen_find = ScreenData.find((x) => x.id == item.id);
-    if (screen_find) {
-      ScreenData.splice(screen_find, 1);
+    const index = ScreenData.findIndex((x) => x.id == item.id);
+    if (index !== -1) {
+      ScreenData.splice(index, 1);
       console.log('deleted...');
-      console.log(ScreenData, 'ScreenData');
+      // console.log(ScreenData, 'ScreenData');
       handleClose()
       router.push('/');
     }
   };
 
-  console.log(item, 'screen in dropdown');
+  // console.log(item, 'screen in dropdown');
 
   React.useEffect(() => {
     router.prefetch('/');

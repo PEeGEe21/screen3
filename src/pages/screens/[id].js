@@ -24,14 +24,14 @@ const Screen = ({id}) => {
     router.back();
   }
 
-  console.log(id, "id");
+  // console.log(id, "id");
 
   useLayoutEffect(()=>{
     if(id && typeof window !== 'undefined'){
       const screen_find = ScreenData.find((x) => x.id == id);
-      console.log(screen_find, "screen_find");
+      // console.log(screen_find, "screen_find");
       setScreen(screen_find);
-      console.log(screen, "screen");
+      // console.log(screen, "screen");
     }
 
   }, [id, screen]);

@@ -66,16 +66,16 @@ export default function ScreenDropdown({screen, id}) {
 
   const handleDelete = () =>{
     console.log('deleting...')
-    const screen_find = ScreenData.find((x) => x.id == screen.id);
-    console.log(screen_find)
-    if(screen_find){
-      ScreenData.splice(screen_find, 1);
+    const index = ScreenData.findIndex((x) => x.id == screen.id);
+    // console.log(screen_find)
+    if(index !== -1){
+      ScreenData.splice(index, 1);
       console.log('deleted...')
       router.push('/')
     }
   }
 
-  console.log(screen, "screen in dropdown")
+  // console.log(screen, "screen in dropdown")
 
   React.useEffect(()=>{
       router.prefetch('/');
