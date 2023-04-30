@@ -1,4 +1,5 @@
 import React from 'react';
+import UserProfileDropdown from '../Dropdowns/UserProfileDropdown';
 import ProfileIcon from '../Icons/ProfileIcon';
 import SearchIcon from '../Icons/SearchIcon';
 import TagsIcon from '../Icons/TagsIcon';
@@ -52,11 +53,8 @@ const Navbar = ({ handleSidebarToggle }) => {
                 <TagsIcon height="22" width="20" />
               </span>
             </button>
-            <button className="bg-[#F2F2F4] p-3 rounded-full h-12 w-12 hidden md:block">
-              <span className="flex items-center justify-center text-[#046ED1]">
-                <ProfileIcon height="18" width="16" />
-              </span>
-            </button>
+            <UserProfileDropdown/>
+            
           </div>
         </div>
       </div>

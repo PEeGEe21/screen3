@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DropdownIcon = ({ isDropdown, size }) => {
+const DropdownIcon = ({ isDots, size }) => {
   return (
     <>
       <span className="">
@@ -26,7 +26,9 @@ const DropdownIcon = ({ isDropdown, size }) => {
           height="6"
           viewBox="0 0 9 6"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="http://www.w3.org/2000/svg" 
+          className={`${isDots ? '-rotate-90' : ''}`}
+
         >
           <path
             d="M7.95276 0.771729H1.04609C0.486093 0.771729 0.206093 1.4484 0.602759 1.84506L3.62443 4.86673C4.10859 5.35089 4.89609 5.35089 5.38026 4.86673L6.52942 3.71756L8.40192 1.84506C8.79276 1.4484 8.51276 0.771729 7.95276 0.771729Z"

@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Tabs } from 'react-tabs';
 import Tab from 'react-tabs/lib/components/Tab';
 import TabList from 'react-tabs/lib/components/TabList';
 import TabPanel from 'react-tabs/lib/components/TabPanel';
+import ScreenDropdown from '../../../components/Dropdowns/ScreenDropdown';
 import BackIcon from '../../../components/Icons/BackIcon';
 import CommentIcon from '../../../components/Icons/CommentIcon';
 import EyeIcon from '../../../components/Icons/EyeIcon';
@@ -14,12 +15,26 @@ import ShareIcon from '../../../components/Icons/ShareIcon';
 import SummaryIcon from '../../../components/Icons/SummaryIcon';
 import TranslateIcon from '../../../components/Icons/TranslateIcon';
 import Layout from '../../../components/Layout/Layout';
+import { ScreenData } from '../../../utils/data';
 
-const Screen = () => {
+const Screen = ({id}) => {
+  const [screen, setScreen] = useState({})
   const router = useRouter();
   function goBack() {
     router.back();
   }
+
+  console.log(id, "id");
+
+  useLayoutEffect(()=>{
+    if(id && typeof window !== 'undefined'){
+      const screen_find = ScreenData.find((x) => x.id == id);
+      console.log(screen_find, "screen_find");
+      setScreen(screen_find);
+      console.log(screen, "screen");
+    }
+
+  });
   return (
     <div className="">
       <div className="w-full flex items-start md:items-center justify-between py-2  flex-wrap md:flex-row flex-col md:gap-0 gap-3">
@@ -27,8 +42,9 @@ const Screen = () => {
           <button onClick={goBack} className="text-[#344054] rounded-full p-2 ">
             <BackIcon />
           </button>
-          <h1 className="text-xl font-medium  ">Blockchain</h1>
+          <h1 className="text-xl font-medium  ">{screen?.name}</h1>
         </div>
+
 
         <div className=" font-normal flex items-start flex-row gap-3">
           <button className="flex items-center text-[#344054] bg-white text-sm  px-3 py-2 rounded-lg h-10 gap-2">
@@ -43,11 +59,11 @@ const Screen = () => {
             </span>
             Share
           </button>
-          <button className="text-[#344054] rounded-full p-2 bg-[#F2F2F4]">
-            <span className="">
-              <MoreVertIcon />
-            </span>
-          </button>
+          
+          <ScreenDropdown screen={screen} screen_id={id}/>
+              
+            {/* </span>
+          </button> */}
         </div>
       </div>
 
@@ -131,6 +147,10 @@ const Screen = () => {
       </div>
     </div>
   );
+};
+
+Screen.getInitialProps = ({ query }) => {
+  return { id: query.id };
 };
 
 export default Screen;

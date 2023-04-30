@@ -17,8 +17,9 @@ import ListIcon from '../../components/Icons/ListIcon';
 import MoreHoriIcon from '../../components/Icons/MoreHoriIcon';
 
 import Layout from '../../components/Layout/Layout';
-import EmptyState from '../../components/State/EmptyState';
+import EmptyState from '../../components/EmptyState';
 import { ScreenData } from '../../utils/data';
+import DotsDropdown from '../../components/Dropdowns/DotsDropdown';
 
 const Dashboard = () => {
   return (
@@ -94,9 +95,7 @@ const Dashboard = () => {
                             Today, 11:12am
                           </span>
                         </div>
-                        <button className='p-2'>
-                          <MoreHoriIcon />
-                        </button>
+                        <DotsDropdown item={item}/>
                       </div>
                     </div>
                     {/* {item.name} */}

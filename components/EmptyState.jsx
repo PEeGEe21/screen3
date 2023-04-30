@@ -8,7 +8,7 @@ const EmptyState = () => {
         <Image src={'/img/emptystate.svg'} alt={'logo'}  width={200} height={100} className="object-cover" />
       </div>
       <div className='my-4 text-sm'>
-        <p className='text-[#344054]'>It's empty here</p>
+        <p className='text-[#344054]'>It&apos;s empty here</p>
         <h5 className='text-[#7F8691]'>You can use screen3 to either</h5>
       </div>
       <div className='flex items-center justify-between flex-col gap-2 mt-3 text-sm'>

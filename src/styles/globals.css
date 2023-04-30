@@ -150,3 +150,7 @@ body {
     opacity: 1;
   }
 }
+
+#demo-customized-button:hover{
+  background: #F3F3FE !important;
+}

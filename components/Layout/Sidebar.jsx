@@ -9,6 +9,7 @@ import AddIcon from '../Icons/AddIcon';
 import ScreenIcon from '../Icons/ScreenIcon';
 import ShareIcon from '../Icons/ShareIcon';
 import Image from 'next/image';
+import NewScreenDropdown from '../Dropdowns/NewScreenDropdown';
 
 const Sidebar = ({ toggleCollapse }) => {
   const [isCollapsible, setIsCollapsible] = useState(true);
@@ -74,22 +75,8 @@ const Sidebar = ({ toggleCollapse }) => {
               <div
                 className={` flex-wrap ${toggleCollapse ? 'px-3' : 'px-8'} `}
               >
-                <button
-                  className={`menu-item main-btn w-full font-thin flex items-center p-3 px-2  my-2  transition-colors duration-200 ease-in text-[#344054]  ${
-                    toggleCollapse ? 'justify-center' : 'justify-start'
-                  }`}
-                >
-                  <span className="text-left px-3">
-                    <AddIcon />
-                  </span>
-                  {!toggleCollapse && (
-                    <span className={classNames(' text-sm font-normal flex items-center gap-1')}>
-                      New screen
-
-                      <DropdownIcon className=""/>
-                    </span>
-                  )}
-                </button>
+                <NewScreenDropdown toggleCollapse={toggleCollapse} />
+                
                 <div className="mt-6">
                   <Link
                     href="/"
@@ -135,8 +122,9 @@ const Sidebar = ({ toggleCollapse }) => {
               </div>
             </nav>
           </div>
+          {/* motion-safe:animate-bounce */}
           {!toggleCollapse && (
-            <div className=" px-3">
+            <div className=" px-3 ">
               <div className="bg-[#FEF4E4] flex flex-col gap-3 items-center justify-center px-3 py-4 rounded-2xl">
                 <div>
                 <Image
