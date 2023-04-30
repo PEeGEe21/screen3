@@ -138,7 +138,7 @@ const Signup = () => {
                       className="inline-block px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded-lg  bg-[#6457EF]  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12"
                       onClick={handleSubmit}
                     >
-                      {loading === true ? <Loader /> : 'Sign Up'}
+                      Sign Up
                     </button>
                   </form>
 
@@ -154,7 +154,7 @@ const Signup = () => {
                       href="/signup"
                       className=" text-[#6457EF] ml-1 underline"
                     >
-                      Terms of use & service
+                      Terms of use &amp; service
                     </Link>
                   </div>
                   <div className="flex items-center justify-center mt-5">
