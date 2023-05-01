@@ -16,6 +16,7 @@ import ShareIcon from '../Icons/ShareIcon';
 import SummaryIcon from '../Icons/SummaryIcon';
 import DropdownIcon from '../Icons/DropdownIcon';
 import RenameVideoModal from '../Modals/RenameVideoModal';
+import RenameDropdown from './RenameDropdown';
 // import { ArrowRightAlt } from '@mui/icons-material';
 
 const StyledMenu = styled((props) => (
@@ -131,12 +132,9 @@ export default function DotsDropdown({ item }) {
             <DropdownIcon isDots={true} />
           </span>
         </MenuItem>
-        <MenuItem onClick={handleOpenRenameModal} disableRipple>
-          <span className="text-[#344054] text-xs flex items-center gap-2">
-            <SummaryIcon />
-            Rename
-          </span>
-        </MenuItem>
+
+        <RenameDropdown item={item} disableRipple/>
+
         <MenuItem onClick={handleClose} disableRipple>
           <span className="text-[#344054] text-xs flex items-center gap-2">
             <CopyIcon />

@@ -190,7 +190,7 @@ body {
   /* border-radius: 4px; */
   overflow: hidden;
   padding-bottom: 20px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   /* background-color: #fff; */
   -ms-flex-item-align: center;
   align-self: center;
@@ -226,4 +226,51 @@ body {
   .modal__box-wrapper {
     width: calc(100% - 40px);
   }
+}
+
+.time_progressbarContainer {
+  background: #f1f1f3;
+  border-radius: 32px;
+  width: 100%;
+  height: 5px;
+  z-index: 30;
+  position: relative;
+  margin: 5px 0 15px;
+}
+
+.time_progressBar {
+  border-radius: 15px;
+  background-color: #fcbe5f;
+  height: 100%;
+}
+
+.progressbar_animation {
+  animation: animate-bar linear forwards;
+  animation-play-state: paused;
+}
+
+video {
+  width: 100%;
+  /* max-width: 967px; */
+  margin: 0 auto;
+  height: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+@keyframes animate-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.menu-override:hover {
+  background: none;
+}
+.menu-override {
+  cursor: default;
 }

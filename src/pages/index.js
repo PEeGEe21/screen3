@@ -34,13 +34,13 @@ const Dashboard = () => {
           <TagsDropdown/>
           <button className="flex items-center text-[#344054] bg-white text-sm border-[#D5D5D6] border mt-0 md:mt-0 px-3 py-2 rounded-lg h-10  gap-2">
             Date
-            <span className="mr-2">
+            <span className="">
               <DropdownIcon />
             </span>
           </button>
           <button className="flex items-center text-[#344054] bg-white text-sm border-[#D5D5D6] border mt-0 md:mt-0 px-3 py-2 rounded-lg h-10  gap-2">
             Last uploaded
-            <span className="mr-2">
+            <span className="">
               <DropdownIcon />
             </span>
           </button>
@@ -84,7 +84,7 @@ const Dashboard = () => {
                         <div className="text-[#344054]">
                           <Link href={`/screens/${item.id}`}>
                             <h6 className="text-base font-medium ">
-                            {item.name}{item.type}
+                            {item.name}{item.ext}
                           </h6>
                           </Link>
                           

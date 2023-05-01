@@ -14,8 +14,8 @@ const Layout = ({ children }) => {
       <div className="flex-1 h-full overflow-y-auto border-l-0">
         <Navbar handleSidebarToggle={handleSidebarToggle} />
 
-        <div className="main-wrapper  ">
-          <div className="h-screen py-10 px-4 md:px-12">{children}</div>
+        <div className="main-wrapper ">
+          <div className="h-full py-10 px-4 md:px-12">{children}</div>
         </div>
       </div>
     </div>

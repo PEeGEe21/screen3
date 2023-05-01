@@ -89,7 +89,7 @@ export default function TagsDropdown({ item, toggleCollapse }) {
         onClick={handleClick}
       >
         Tags
-        <span className="mr-2">
+        <span className="">
           <DropdownIcon />
         </span>
       </button>
@@ -104,17 +104,27 @@ export default function TagsDropdown({ item, toggleCollapse }) {
         onClose={handleClose}
       >
         {Tags.map((item, index) => (
-          <MenuItem disableRipple
-            key={index}
-            
-          >
-            <span className={`rounded-full text-xs text-[${colors[index % colors.length]}]`} style={{
-              color: colors[index % colors.length],
-            //   backgroundColor: (colors[index % colors.length]),
-            }}>
-            {item}
-                
-                </span>
+          <MenuItem disableRipple key={index}>
+            <span
+              className={`rounded-full text-xs px-3 py-1 text-[${
+                colors[index % colors.length]
+              }]`}
+              style={{
+                color: colors[index % colors.length],
+                backgroundColor: `rgba(${parseInt(
+                  colors[index % colors.length].substr(1, 2),
+                  16
+                )}, ${parseInt(
+                  colors[index % colors.length].substr(3, 2),
+                  16
+                )}, ${parseInt(
+                  colors[index % colors.length].substr(5, 2),
+                  16
+                )}, 0.1)`,
+              }}
+            >
+              {item}
+            </span>
           </MenuItem>
         ))}
       </StyledMenu>
