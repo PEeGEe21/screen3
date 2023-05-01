@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CommentIcon from './Icons/CommentIcon';
 import FingerScan from './Icons/FingerScan';
+import PauseIcon from './Icons/PauseIcon';
 import PlayIcon from './Icons/PlayIcon';
 import ScreenIcon from './Icons/ScreenIcon';
 import VolumeIcon from './Icons/VolumeIcon';
 
 const Video = ({ screen, url, ...props }) => {
   const videoRef = useRef(null);
-  const videoWrapperRef = useRef(null)
+  const videoWrapperRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [videoTime, setVideoTime] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [isFullScreen, setIsFullscreen] = useState(false)
-
+  const [isFullScreen, setIsFullscreen] = useState(false);
 
   const [src, setSrc] = useState('');
 
@@ -35,11 +35,11 @@ const Video = ({ screen, url, ...props }) => {
     //   setIsPlaying(false);
     // }
     if (isPlaying) {
-        videoRef.current.pause();
+      videoRef.current.pause();
     } else {
-        videoRef.current.play();
+      videoRef.current.play();
     }
-    setIsPlaying(currentPlayingState => !isPlaying)
+    setIsPlaying((currentPlayingState) => !isPlaying);
   };
 
   const onTimeUpdate = () => {
@@ -47,25 +47,28 @@ const Video = ({ screen, url, ...props }) => {
   };
 
   useEffect(() => {
-    document.addEventListener("fullscreenchange", e => {
-        if (document.fullscreenElement) {
-            setIsFullscreen(true)
-        } else {
-            setIsFullscreen(false)
-        }
-    })
-}, [])
+    document.addEventListener('fullscreenchange', (e) => {
+      if (document.fullscreenElement) {
+        setIsFullscreen(true);
+      } else {
+        setIsFullscreen(false);
+      }
+    });
+  }, []);
 
-const toggleFullScreen = () => {
+  const toggleFullScreen = () => {
     if (document.fullscreenElement) {
-        document.exitFullscreen()
+      document.exitFullscreen();
     } else {
-        videoWrapperRef.current.requestFullscreen()
+      videoWrapperRef.current.requestFullscreen();
     }
-}
+  };
   return (
     <>
-      <div className="relative block w-full h-96 max-h-full overflow-hidden object-cover rounded-lg" ref={videoWrapperRef}>
+      <div
+        className="relative block w-full h-96 max-h-full overflow-hidden object-cover rounded-lg"
+        ref={videoWrapperRef}
+      >
         <video
           {...props}
           ref={videoRef}
@@ -75,8 +78,8 @@ const toggleFullScreen = () => {
             setVideoTime(videoRef.current.duration);
           }}
           onTimeUpdate={onTimeUpdate}
-          onEnded={() => setIsPlaying(false)} 
-          onClick={videoHandler} 
+          onEnded={() => setIsPlaying(false)}
+          onClick={videoHandler}
           poster={`${screen?.thumb && screen?.thumb} `}
         >
           <source src={screen?.video_url} type={screen?.type}></source>
@@ -96,7 +99,7 @@ const toggleFullScreen = () => {
                 : `${videoRef.current.duration}s`,
             }}
             className={`time_progressBar ${
-              (currentTime !== videoTime) && !isLoading ? 'progressbar_animation' : ''
+              currentTime !== videoTime ? 'progressbar_animation' : ''
             } `}
           ></div>
         </div>
@@ -109,7 +112,7 @@ const toggleFullScreen = () => {
                 className="bg-[#EEEEF0B8] rounded-full p-3 h-12 w-12 flex justify-center items-center text-[#6457EF]"
                 onClick={() => videoHandler('pause')}
               >
-                <ScreenIcon />
+                <PauseIcon />
               </button>
             ) : (
               <button
@@ -145,7 +148,10 @@ const toggleFullScreen = () => {
             <button className="bg-[#EEEEF0B8] rounded-full p-3 h-12 w-12 flex justify-center items-center text-[#6457EF]">
               <VolumeIcon />
             </button>
-            <button className="bg-[#EEEEF0B8] rounded-full p-3 h-12 w-12 flex justify-center items-center text-[#6457EF]" onClick={toggleFullScreen}>
+            <button
+              className="bg-[#EEEEF0B8] rounded-full p-3 h-12 w-12 flex justify-center items-center text-[#6457EF]"
+              onClick={toggleFullScreen}
+            >
               <FingerScan />
             </button>
           </div>
