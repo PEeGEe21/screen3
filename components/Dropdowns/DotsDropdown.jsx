@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -15,6 +15,7 @@ import MoreHoriIcon from '../Icons/MoreHoriIcon';
 import ShareIcon from '../Icons/ShareIcon';
 import SummaryIcon from '../Icons/SummaryIcon';
 import DropdownIcon from '../Icons/DropdownIcon';
+import RenameVideoModal from '../Modals/RenameVideoModal';
 // import { ArrowRightAlt } from '@mui/icons-material';
 
 const StyledMenu = styled((props) => (
@@ -60,6 +61,7 @@ const StyledMenu = styled((props) => (
 export default function DotsDropdown({ item }) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openRenameModal, setOpenRenameModal] = React.useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -89,6 +91,12 @@ export default function DotsDropdown({ item }) {
   React.useEffect(() => {
     router.prefetch('/');
   }, []);
+
+
+  const handleOpenRenameModal = () => {
+    handleClose();
+    setOpenRenameModal(!openRenameModal)
+  }
 
   return (
     <>
@@ -123,7 +131,7 @@ export default function DotsDropdown({ item }) {
             <DropdownIcon isDots={true} />
           </span>
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleOpenRenameModal} disableRipple>
           <span className="text-[#344054] text-xs flex items-center gap-2">
             <SummaryIcon />
             Rename
@@ -148,6 +156,9 @@ export default function DotsDropdown({ item }) {
           </button>
         </MenuItem>
       </StyledMenu>
+
+      <RenameVideoModal show={openRenameModal} dismiss={handleOpenRenameModal} item={item}/>
+
     </>
   );
 }

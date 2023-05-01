@@ -8,6 +8,7 @@ import TabPanel from 'react-tabs/lib/components/TabPanel';
 import ScreenDropdown from '../../../components/Dropdowns/ScreenDropdown';
 import BackIcon from '../../../components/Icons/BackIcon';
 import CommentIcon from '../../../components/Icons/CommentIcon';
+import EditIcon from '../../../components/Icons/EditIcon';
 import EyeIcon from '../../../components/Icons/EyeIcon';
 import MoreVertIcon from '../../../components/Icons/MoreVertIcon';
 import ScreenIcon from '../../../components/Icons/ScreenIcon';
@@ -17,8 +18,8 @@ import TranslateIcon from '../../../components/Icons/TranslateIcon';
 import Layout from '../../../components/Layout/Layout';
 import { ScreenData } from '../../../utils/data';
 
-const Screen = ({id}) => {
-  const [screen, setScreen] = useState({})
+const Screen = ({ id }) => {
+  const [screen, setScreen] = useState({});
   const router = useRouter();
   function goBack() {
     router.back();
@@ -26,14 +27,13 @@ const Screen = ({id}) => {
 
   // console.log(id, "id");
 
-  useLayoutEffect(()=>{
-    if(id && typeof window !== 'undefined'){
+  useLayoutEffect(() => {
+    if (id && typeof window !== 'undefined') {
       const screen_find = ScreenData.find((x) => x.id == id);
       // console.log(screen_find, "screen_find");
       setScreen(screen_find);
       // console.log(screen, "screen");
     }
-
   }, [id, screen]);
   return (
     <div className="">
@@ -42,9 +42,13 @@ const Screen = ({id}) => {
           <button onClick={goBack} className="text-[#344054] rounded-full p-2 ">
             <BackIcon />
           </button>
-          <h1 className="text-xl font-medium  ">{screen?.name}</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-medium  ">{screen?.name}</h1>
+            <span className="text-[#6457EF]">
+              <EditIcon />
+            </span>
+          </div>
         </div>
-
 
         <div className=" font-normal flex items-start flex-row gap-3">
           <button className="flex items-center text-[#344054] bg-white text-sm  px-3 py-2 rounded-lg h-10 gap-2">
@@ -59,10 +63,10 @@ const Screen = ({id}) => {
             </span>
             Share
           </button>
-          
-          <ScreenDropdown screen={screen} screen_id={id}/>
-              
-            {/* </span>
+
+          <ScreenDropdown screen={screen} screen_id={id} />
+
+          {/* </span>
           </button> */}
         </div>
       </div>
@@ -76,7 +80,7 @@ const Screen = ({id}) => {
                 fill
                 priority
                 alt={`Picture of image`}
-                className=" rounded-lg"
+                className=" rounded-lg object-cover"
               />
             </div>
           </div>

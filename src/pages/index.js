@@ -71,7 +71,7 @@ const Dashboard = () => {
                         fill
                         priority
                         alt={`Picture of ${item.name}`}
-                        className="max-h-48 rounded-lg"
+                        className="card-img max-h-48 rounded-lg"
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 w-full rounded-br-lg ">
@@ -84,7 +84,7 @@ const Dashboard = () => {
                         <div className="text-[#344054]">
                           <Link href={`/screens/${item.id}`}>
                             <h6 className="text-base font-medium ">
-                            {item.name}
+                            {item.name}{item.type}
                           </h6>
                           </Link>
                           
