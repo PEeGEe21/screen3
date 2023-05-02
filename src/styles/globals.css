@@ -274,3 +274,121 @@ video {
 .menu-override {
   cursor: default;
 }
+
+
+
+/* Tags Input */
+
+.tags-input ul {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0px;
+}
+
+.tags-input li {
+  list-style: none;
+}
+
+.tag-area {
+  /* padding: 1rem; */
+  outline: none;
+  width: 100%;
+  /* border: 2px solid #605f6f; */
+  /* border-radius: 5px; */
+  transition: all 0.2s;
+  cursor: text;
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* justify-content: flex-start; */
+
+}
+
+/* .tags-input .label {
+  position: absolute;
+  background: #1f2023;
+  padding: 0 0.3rem;
+  color: #adadad;
+  top: 22px;
+  transition: all 0.1s;
+} */
+
+/* .tags-input .label-active {
+  top: -11px;
+  color: #8d29ff;
+  font-size: 13px;
+} */
+
+.tags-input.tag-area ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* .tags-input .active {
+  border: 2px solid #8d29ff !important;
+} */
+
+.tags-input .tag {
+  /* padding-left: 0.8rem; */
+  /* background: #E8EFFE; */
+  /* border-radius: 100px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.tags-input .tag-input {
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  width: 100%;
+  /* margin-left: 0.5rem; */
+  /* background: transparent; */
+  /* font-size: 20px; */
+  color: #807F88;
+}
+
+.tags-input .cross {
+  cursor: pointer;
+  display: flex;
+  margin-left: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  /* transform: rotate(45deg); */
+  border-radius: 50%;
+  background: #414141;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  color: #ffffff;
+
+}
+
+/* .tags-input .cross:hover {
+  background: #818181b1;
+} */
+
+/* .tags-input .cross::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  background: rgb(255, 255, 255);
+}
+
+.tags-input .cross::after {
+  content: "";
+  height: 5px;
+  width: 5px;
+  position: absolute;
+  background: rgb(255, 255, 255);
+} */
+
+@media (max-width: 650px) {
+  .tags-input.tag-area {
+      width: 100%;
+  }
+}

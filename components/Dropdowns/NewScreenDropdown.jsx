@@ -9,6 +9,7 @@ import AddIcon from '../Icons/AddIcon';
 import classNames from 'classnames';
 import RecorderIcon from '../Icons/RecorderIcon';
 import BoxRecieveIcon from '../Icons/BoxRecieveIcon';
+import SaveVideoModal from '../Modals/SaveVideoModal';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -53,6 +54,8 @@ const StyledMenu = styled((props) => (
 export default function NewScreenDropdown({ item, toggleCollapse }) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openSaveVideoModal, setOpenSaveVideoModal] = React.useState(false);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,12 +64,14 @@ export default function NewScreenDropdown({ item, toggleCollapse }) {
     setAnchorEl(null);
   };
 
-
-
   React.useEffect(() => {
     router.prefetch('/');
   }, []);
 
+  const handleOpenSaveRenameModal = () => {
+    handleClose();
+    setOpenSaveVideoModal(!openSaveVideoModal)
+  }
   return (
     <>
       <button
@@ -102,7 +107,7 @@ export default function NewScreenDropdown({ item, toggleCollapse }) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleOpenSaveRenameModal} disableRipple>
           <span className="text-[#344054] text-sm flex items-center gap-2">
             <RecorderIcon />
             Record video
@@ -115,6 +120,9 @@ export default function NewScreenDropdown({ item, toggleCollapse }) {
           </span>
         </MenuItem>
       </StyledMenu>
+
+      <SaveVideoModal show={openSaveVideoModal} dismiss={handleOpenSaveRenameModal}/>
+
     </>
   );
 }
