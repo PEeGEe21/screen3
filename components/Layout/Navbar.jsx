@@ -53,7 +53,7 @@ const Navbar = ({ handleSidebarToggle }) => {
                 <TagsIcon height="22" width="20" />
               </span>
             </button>
-            <UserProfileDropdown/>
+            <UserProfileDropdown />
             
           </div>
         </div>

@@ -11,6 +11,8 @@ import RecorderIcon from '../Icons/RecorderIcon';
 import BoxRecieveIcon from '../Icons/BoxRecieveIcon';
 import ProfileIcon from '../Icons/ProfileIcon';
 import LoginIcon from '../Icons/LoginIcon';
+import { getSession, useSession, signOut } from 'next-auth/react';
+
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -30,7 +32,7 @@ const StyledMenu = styled((props) => (
     borderRadius: 8,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color:'rgb(55, 65, 81)',
+    color: 'rgb(55, 65, 81)',
     // color:
     //   theme.palette.mode === 'light'
     //     ? 'rgb(55, 65, 81)'
@@ -56,7 +58,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function UserProfileDropdown({ item, toggleCollapse }) {
+export default function UserProfileDropdown() {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -70,6 +72,12 @@ export default function UserProfileDropdown({ item, toggleCollapse }) {
   React.useEffect(() => {
     router.prefetch('/');
   }, []);
+
+  // const {data: session} = useSession();
+
+  function handleSignOut(){
+    // signOut()
+  }
 
   return (
     <>
@@ -96,10 +104,11 @@ export default function UserProfileDropdown({ item, toggleCollapse }) {
       >
         <MenuItem disableRipple>
           <span className="text-[#344054] text-sm flex items-center gap-2 py-1">
-          bosemay04@gmail.com
+            {/* {session ? session?.user?.email : ''} */}
+            bosemay04@gmail.com
           </span>
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple className=' mt-3'>
+        <MenuItem onClick={handleSignOut} disableRipple className=" mt-3">
           <span className="text-[#E92005] text-sm flex items-center gap-3">
             <LoginIcon />
             Log out

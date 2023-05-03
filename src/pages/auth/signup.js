@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { useFormik } from 'formik';
+import { signupValidate } from '../../../lib/validate';
 
 const Signup = () => {
   const currentYear = new Date().getFullYear();
@@ -12,8 +15,23 @@ const Signup = () => {
   // redirect authenticated user to profile screen
 
   useEffect(() => {
-    router.prefetch('/collector/dashboard');
+    router.prefetch('/auth/login');
   }, []);
+
+  const formik = useFormik({
+    initialValues: {
+      fname: '',
+      lname: '',
+      email: '',
+      password: '',
+    },
+    validate: signupValidate,
+    onSubmit,
+  });
+
+  async function onSubmit(values) {
+    console.log(values);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,16 +60,16 @@ const Signup = () => {
               {/* <div className="overlay"></div> */}
             </div>
             <div className=" w-full md:w-1/2 grow bg-white h-full overflow-y-auto px-4 md:px-[60px] lg:px-[80px] xl:px-[100px] pt-[30px] pb-7 scrollbar ">
-              <div className="max-w-[500px] mx-auto flex items-center h-full justify-center">
+              <div className="max-w-[500px] mx-auto flex items-center justify-center">
                 <div className="w-full">
                   <div className="mb-10 text-left">
                     <h2 className="text-2xl font-semibold text-gray-700 capitalize text-center  mb-3">
                       Sign up to get started
                     </h2>
                   </div>
-                  <form onSubmit={handleSubmit}>
-                    <div className="flex items-center gap-3 w-full">
-                      <div className="mb-4 w-1/2">
+                  <form onSubmit={formik.handleSubmit}>
+                    <div className="grid grid-cols-2 gap-3 w-full">
+                      <div className="mb-4 ">
                         <label
                           className="text-[#807F88] font-medium mb-3 text-sm"
                           htmlFor="fname"
@@ -62,15 +80,23 @@ const Signup = () => {
                           id="fname"
                           type="text"
                           className={`block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border ${
-                            error
+                            formik.errors.fname && formik.touched.fname
                               ? 'border-red-700 focus:border-red-700'
                               : 'border-gray-200 focus:border-gray-300'
                           }   rounded-lg focus:outline-none`}
                           name="fname"
                           autoComplete="off"
+                          {...formik.getFieldProps('fname')}
                         />
+                        {formik.errors.fname && formik.touched.fname ? (
+                          <span className="text-xs text-rose-500 ">
+                            {formik.errors.fname}
+                          </span>
+                        ) : (
+                          <></>
+                        )}
                       </div>
-                      <div className="mb-4 w-1/2">
+                      <div className="mb-4">
                         <label
                           className="text-[#807F88] font-medium mb-3 text-sm"
                           htmlFor="lname"
@@ -81,13 +107,21 @@ const Signup = () => {
                           id="lname"
                           type="text"
                           className={`block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border ${
-                            error
+                            formik.errors.lname && formik.touched.lname
                               ? 'border-red-700 focus:border-red-700'
                               : 'border-gray-200 focus:border-gray-300'
                           }   rounded-lg focus:outline-none`}
                           name="lname"
                           autoComplete="off"
+                          {...formik.getFieldProps('lname')}
                         />
+                        {formik.errors.lname && formik.touched.lname ? (
+                          <span className="text-xs text-rose-500">
+                            {formik.errors.lname}
+                          </span>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     </div>
 
@@ -102,15 +136,23 @@ const Signup = () => {
                         id="email"
                         type="email"
                         className={`block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border ${
-                          error
+                          formik.errors.email && formik.touched.email
                             ? 'border-red-700 focus:border-red-700'
                             : 'border-gray-200 focus:border-gray-300'
                         }   rounded-lg focus:outline-none`}
                         name="email"
                         min="3"
                         autoComplete="off"
-                        onChange={(e) => setEmail(e.target.value)}
+                        {...formik.getFieldProps('email')}
+                        // onChange={(e) => setEmail(e.target.value)}
                       />
+                      {formik.errors.email && formik.touched.email ? (
+                        <span className="text-xs text-rose-500">
+                          {formik.errors.email}
+                        </span>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                     <div className="mb-6">
                       <label
@@ -123,20 +165,27 @@ const Signup = () => {
                         id="password"
                         type="password"
                         className={`block w-full h-12 px-4 py-2 mt-2 text-gray-700 bg-white border ${
-                          error
+                          formik.errors.password && formik.touched.password
                             ? 'border-red-700 focus:border-red-700'
                             : 'border-gray-200 focus:border-gray-300'
                         }   rounded-lg focus:outline-none`}
                         name="password"
                         autoComplete="off"
-                        onChange={(e) => setPassword(e.target.value)}
+                        {...formik.getFieldProps('password')}
+                        // onChange={(e) => setPassword(e.target.value)}
                       />
+                      {formik.errors.password && formik.touched.password ? (
+                        <span className="text-xs text-rose-500">
+                          {formik.errors.password}
+                        </span>
+                      ) : (
+                        <></>
+                      )}
                     </div>
 
                     <button
                       type="submit"
                       className="inline-block px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded-lg  bg-[#6457EF]  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12"
-                      onClick={handleSubmit}
                     >
                       Sign Up
                     </button>
@@ -146,6 +195,62 @@ const Signup = () => {
                     <p className="text-center font-normal mx-4 mb-0 text-[#807F88]">
                       OR
                     </p>
+                  </div>
+
+                  {/* Social auth */}
+                  <div className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      className="flex items-center gap-4 justify-center px-7 py-3 text-[#344054] font-medium text-sm leading-snug  rounded-lg  bg-white  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12 border border-[#D0D5DD]"
+                    >
+                      <Image
+                        src={'/img/GoogleIcon.svg'}
+                        alt={'google-icon'}
+                        width={20}
+                        height={20}
+                        priority
+                      />
+                      Sign up with Google
+                    </button>
+                    <button
+                      type="button"
+                      className="flex items-center gap-4 justify-center px-7 py-3 text-[#344054] font-medium text-sm leading-snug  rounded-lg  bg-white  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12 border border-[#D0D5DD]"
+                    >
+                      <Image
+                        src={'/img/FacebookIcon.svg'}
+                        alt={'facebook-icon'}
+                        width={20}
+                        height={20}
+                        priority
+                      />
+                      Sign up with Facebook
+                    </button>
+                    <button
+                      type="button"
+                      className="flex items-center gap-4 justify-center px-7 py-3 text-[#344054] font-medium text-sm leading-snug  rounded-lg  bg-white  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12 border border-[#D0D5DD]"
+                    >
+                      <Image
+                        src={'/img/AppleIcon.svg'}
+                        alt={'apple-icon'}
+                        width={20}
+                        height={20}
+                        priority
+                      />
+                      Sign up with Apple
+                    </button>
+                    <button
+                      type="button"
+                      className="flex items-center gap-4 justify-center px-7 py-3 text-[#344054] font-medium text-sm leading-snug  rounded-lg  bg-white  focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out w-full h-12 border border-[#D0D5DD]"
+                    >
+                      <Image
+                        src={'/img/GithubIcon.svg'}
+                        alt={'github-icon'}
+                        width={20}
+                        height={20}
+                        priority
+                      />
+                      Sign up with Github
+                    </button>
                   </div>
 
                   <div className="flex items-center justify-center mt-3 text-xs text-[#807F88]">

@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import WelcomeModal from '../Modals/WelcomeModal';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import { getSession, useSession, signOut } from 'next-auth/react';
+
 
 const Layout = ({ children }) => {
+  // const {data: session} = useSession();
+
   const [toggleCollapse, setToggleCollapse] = useState(false);
   const [openWelcomeModal, setOpenWelcomeModal] = React.useState(false);
 
@@ -48,5 +52,22 @@ const Layout = ({ children }) => {
     </>
   );
 };
+
+export async function getServerSideProps({req}){
+  const session = await getSession({req})
+
+  if(!session){
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {session}
+  }
+}
 
 export default Layout;

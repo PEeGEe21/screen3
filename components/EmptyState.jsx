@@ -5,7 +5,7 @@ const EmptyState = () => {
   return (
     <div className='mt-6 text-center'>
       <div className='flex items-center justify-center'>
-        <Image src={'/img/emptystate.svg'} alt={'logo'}  width={200} height={100} className="object-cover" priority/>
+        <Image src={'/img/emptystate.svg'} alt={'empty-image'}  width={200} height={100} className="object-cover" priority/>
       </div>
       <div className='my-4 text-sm'>
         <p className='text-[#344054]'>It&apos;s empty here</p>
