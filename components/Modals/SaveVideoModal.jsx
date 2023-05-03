@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import TagsInput from './TagsInput';
+import CloseIcon from '../Icons/CloseIcon';
+import TagsInput from './ModalComponents/TagsInput';
 
 const SaveVideoModal = ({ show, dismiss }) => {
-  const [getStartedBtn, setGetStartedBtn] = useState(false);
   const [description, setDescription] = useState('');
   const [name, setName] = useState('');
 
@@ -24,20 +24,7 @@ const SaveVideoModal = ({ show, dismiss }) => {
             onClick={() => dismiss()}
           >
             <span className="pointer-events-none flex items-center p-1">
-              <svg
-                className="h-3 w-3 "
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15 5L5 15M5 5L15 15"
-                  stroke="currentColor"
-                  strokeWidth="1.67"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-              </svg>
+              <CloseIcon />
             </span>
           </button>
         </div>
@@ -59,7 +46,7 @@ const SaveVideoModal = ({ show, dismiss }) => {
                 type="text"
                 className={`block w-full h-full px-4 py-2 text-gray-700 bg-white border rounded-lg border-[#D5D5D6] focus:outline-none`}
                 name="name"
-                defaultValue=''
+                defaultValue=""
                 autoComplete="off"
                 onChange={(e) => setName(e.target.value)}
               />
@@ -82,7 +69,7 @@ const SaveVideoModal = ({ show, dismiss }) => {
             />
           </div> */}
 
-          <TagsInput/>
+          <TagsInput />
 
           <div className="mb-4">
             <label
@@ -98,7 +85,7 @@ const SaveVideoModal = ({ show, dismiss }) => {
               name="description"
               autoComplete="off"
               onChange={(e) => setDescription(e.target.value)}
-              placeholder='Write a short description'
+              placeholder="Write a short description"
             />
           </div>
         </div>

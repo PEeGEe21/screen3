@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { colors } from '../../utils/data';
+import { colors } from '../../../utils/data';
 
 export default function TagsInput() {
   const [tags, setTags] = useState([]);

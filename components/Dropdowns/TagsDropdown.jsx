@@ -29,7 +29,7 @@ const StyledMenu = styled((props) => (
   '& .MuiPaper-root': {
     borderRadius: 8,
     marginTop: theme.spacing(1),
-    minWidth: 140,
+    minWidth: 70,
     color: 'rgb(55, 65, 81)',
     // color:
     //   theme.palette.mode === 'light'
@@ -103,6 +103,13 @@ export default function TagsDropdown({ item, toggleCollapse }) {
         open={open}
         onClose={handleClose}
       >
+        <div className="px-4 py-2 w-full">
+          <input
+            type="search"
+            className=" w-full text-xs border-[#D5D5D6] border-b py-2 px-2 focus:outline-none"
+            placeholder="Search tags"
+          />
+        </div>
         {Tags.map((item, index) => (
           <MenuItem disableRipple key={index}>
             <span

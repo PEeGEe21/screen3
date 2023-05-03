@@ -10,6 +10,7 @@ import ScreenIcon from '../Icons/ScreenIcon';
 import ShareIcon from '../Icons/ShareIcon';
 import Image from 'next/image';
 import NewScreenDropdown from '../Dropdowns/NewScreenDropdown';
+import TagsIcon from '../Icons/TagsIcon';
 
 const Sidebar = ({ toggleCollapse }) => {
   const [isCollapsible, setIsCollapsible] = useState(true);
@@ -53,20 +54,20 @@ const Sidebar = ({ toggleCollapse }) => {
               {!toggleCollapse ? (
                 <Link href="/" className="px-3">
                   <Image
-              src={"/img/logo.svg"}
-              alt={"logo"}
-              width={80}
-              height={100}
-            />
+                    src={'/img/logo.svg'}
+                    alt={'logo'}
+                    width={80}
+                    height={100}
+                  />
                   {/* <img src="" className="transition 300ms ease" /> */}
                   {/* <Logo className="transition 300ms ease" /> */}
                 </Link>
               ) : (
                 <div className="px-3">
-                  <img
+                  {/* <img
                     src="/images/CollapsedLogo.svg"
                     className="transition 300ms ease-in-out"
-                  />
+                  /> */}
                   {/* <Logo className="transition 300ms ease" /> */}
                 </div>
               )}
@@ -76,13 +77,15 @@ const Sidebar = ({ toggleCollapse }) => {
                 className={` flex-wrap ${toggleCollapse ? 'px-3' : 'px-8'} `}
               >
                 <NewScreenDropdown toggleCollapse={toggleCollapse} />
-                
+
                 <div className="mt-6">
                   <Link
                     href="/"
                     className={`menu-item w-full font-thin ${
-                      (router.asPath === '/' ||
-                      router.pathname.startsWith('/screens')) ? 'bg-[#F3F3FE] text-[#6457EF]' :'text-[#7F8691]'
+                      router.asPath === '/' ||
+                      router.pathname.startsWith('/screens')
+                        ? 'bg-[#F3F3FE] text-[#6457EF]'
+                        : 'text-[#7F8691]'
                     }  flex items-center p-3 px-3  my-2  transition-colors duration-200 ease-in-out hover:bg-[#F3F3FE] hover:text-[#6457EF]  rounded-lg ${
                       toggleCollapse ? 'justify-center' : 'justify-start'
                     }`}
@@ -123,26 +126,33 @@ const Sidebar = ({ toggleCollapse }) => {
             </nav>
           </div>
           {/* motion-safe:animate-bounce */}
-          {!toggleCollapse && (
+          {!toggleCollapse ? (
             <div className=" px-3 ">
               <div className="bg-[#FEF4E4] flex flex-col gap-3 items-center justify-center px-3 py-4 rounded-2xl">
                 <div>
-                <Image
-              src={"/img/Folder.svg"}
-              alt={"logo"}
-              width={70}
-              height={60} 
-              priority
-            />
+                  <Image
+                    src={'/img/Folder.svg'}
+                    alt={'logo'}
+                    width={70}
+                    height={60}
+                    priority
+                  />
                   <img src="/img/Progress.svg" />
                 </div>
                 <p className="text-xs text-center">
                   Get more storage space to save more videos
                 </p>
-                <button className="bg-white p-3 text-xs rounded-lg text-[#6457EF]">
+                <button className="bg-white p-3 text-xs rounded-lg text-[#6457EF] flex items-center gap-1">
+                  <TagsIcon height="14" width="12" />
                   Upgrade storage
                 </button>
               </div>
+            </div>
+          ) : (
+            <div className=" px-2  flex items-center justify-center rounded-lg ">
+              <button className="bg-[#FEF4E4] main-btn p-3 px-3 text-xs rounded-lg text-[#6457EF] flex items-center justify-center w-full">
+                <TagsIcon height="20" width="21" />
+              </button>
             </div>
           )}
         </div>

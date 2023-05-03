@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import CloseIcon from '../Icons/CloseIcon';
 import SummaryIcon from '../Icons/SummaryIcon';
 
 const RenameVideoModal = ({ show, dismiss, item }) => {
-  const [getStartedBtn, setGetStartedBtn] = useState(false);
   const [name, setName] = useState('');
 
   return (
@@ -20,23 +20,10 @@ const RenameVideoModal = ({ show, dismiss, item }) => {
 
           <button
             className=" flex items-center rounded-full border-2 border-gray-900 absolute top-3 right-2  "
-            onClick={() => (dismiss(), setGetStartedBtn(0))}
+            onClick={() => (dismiss())}
           >
             <span className="pointer-events-none flex items-center p-1">
-              <svg
-                className="h-3 w-3 "
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M15 5L5 15M5 5L15 15"
-                  stroke="currentColor"
-                  strokeWidth="1.67"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-              </svg>
+              <CloseIcon />
             </span>
           </button>
         </div>
