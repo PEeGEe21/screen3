@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Signin from '../../../components/LoginComponent';
+// import Signin from '../../../components/LoginComponent';
 // import { providers, signIn, getSession, csrfToken } from 'next-auth/react';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
