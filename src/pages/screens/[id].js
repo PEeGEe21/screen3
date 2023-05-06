@@ -20,6 +20,7 @@ import ScreenSidebar from '../../../components/Layout/ScreenSidebar';
 import Video from '../../../components/Video';
 import { colors, ScreenData } from '../../../utils/data';
 import { SessionProvider } from 'next-auth/react';
+import ShareVideoModal from '../../../components/Modals/ShareVideoModal';
 
 
 const Screen = ({ id }) => {
@@ -30,9 +31,16 @@ const Screen = ({ id }) => {
   const [videoTime, setVideoTime] = useState(0);
   const [progress, setProgress] = useState(0);
   const [screen, setScreen] = useState({});
+  const [openShareModal, setOpenShareModal] = React.useState(false);
+
   const router = useRouter();
+
   function goBack() {
     router.back();
+  }
+
+  const handleOpenShareModal = () => {
+    setOpenShareModal(!openShareModal)
   }
 
   // console.log(id, "id");
@@ -48,17 +56,17 @@ const Screen = ({ id }) => {
     }
   }, [id, screen]);
 
-  const videoHandler = (control) => {
-    if (control === 'play') {
-      videoRef.current.play();
-      setPlaying(true);
-      var vid = document.getElementById('video1');
-      setVideoTime(vid.duration);
-    } else if (control === 'pause') {
-      videoRef.current.pause();
-      setPlaying(false);
-    }
-  };
+  // const videoHandler = (control) => {
+  //   if (control === 'play') {
+  //     videoRef.current.play();
+  //     setPlaying(true);
+  //     var vid = document.getElementById('video1');
+  //     setVideoTime(vid.duration);
+  //   } else if (control === 'pause') {
+  //     videoRef.current.pause();
+  //     setPlaying(false);
+  //   }
+  // };
 
   // console.log(screen, 'screen');
   return (
@@ -83,7 +91,7 @@ const Screen = ({ id }) => {
             </span>
             4 views
           </button>
-          <button className="flex items-center text-white bg-[#6457EF] px-4 py-2 text-sm mt-0 md:mt-0 rounded-lg h-10  gap-2">
+          <button className="flex items-center text-white bg-[#6457EF] px-4 py-2 text-sm mt-0 md:mt-0 rounded-lg h-10 gap-2" onClick={handleOpenShareModal}>
             <span className="">
               <ShareIcon />
             </span>
@@ -175,6 +183,8 @@ const Screen = ({ id }) => {
           </div>
         </div>
       </div>
+
+      <ShareVideoModal show={openShareModal} dismiss={handleOpenShareModal} screen={screen} screen_id={id}/>
     </div>
   );
 };
