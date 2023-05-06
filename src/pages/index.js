@@ -20,9 +20,11 @@ import EmptyState from '../../components/EmptyState';
 import { ScreenData, coloredArray, colors, Tags } from '../../utils/data';
 import DotsDropdown from '../../components/Dropdowns/DotsDropdown';
 import TagsDropdown from '../../components/Dropdowns/TagsDropdown';
+import { SessionProvider } from 'next-auth/react';
+
 
 const Dashboard = () => {
-  console.log(coloredArray, "coloredArray")
+  // console.log(coloredArray, "coloredArray")
 
   return (
     <div className="">
@@ -30,8 +32,8 @@ const Dashboard = () => {
         <h1 className="text-xl font-medium  mb-3 ">My screens</h1>
       </div>
       <div className="w-full flex items-start md:items-center justify-between py-3  flex-wrap md:flex-row flex-col md:gap-0 gap-3">
-        <div className=" font-normal flex items-start flex-row gap-3">
-          <TagsDropdown/>
+        <div className=" font-normal flex items-start flex-row gap-3 flex-wrap">
+          <TagsDropdown />
           <button className="flex items-center text-[#344054] bg-white text-sm border-[#D5D5D6] border mt-0 md:mt-0 px-3 py-2 rounded-lg h-10  gap-2">
             Date
             <span className="">
@@ -75,7 +77,7 @@ const Dashboard = () => {
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 w-full rounded-br-lg ">
-                      <div className='flex items-center justify-end mb-2'>
+                      <div className="flex items-center justify-end mb-2">
                         <span className="py-2 px-4  no-underline rounded-full bg-gray-900 text-white font-semibold text-xs border-blue btn-primary hover:text-white hover:bg-blue-light focus:outline-none   text-right">
                           00:30
                         </span>
@@ -84,15 +86,16 @@ const Dashboard = () => {
                         <div className="text-[#344054]">
                           <Link href={`/screens/${item.id}`}>
                             <h6 className="text-base font-medium ">
-                            {item.name}{item.ext}
-                          </h6>
+                              {item.name}
+                              {item.ext}
+                            </h6>
                           </Link>
-                          
+
                           <span className="font-normal text-sm">
                             Today, 11:12am
                           </span>
                         </div>
-                        <DotsDropdown item={item}/>
+                        <DotsDropdown item={item} />
                       </div>
                     </div>
                     {/* {item.name} */}
@@ -114,5 +117,9 @@ const Dashboard = () => {
 export default Dashboard;
 
 Dashboard.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
+  return (
+    <SessionProvider session={page.session}>
+      <Layout>{page}</Layout>
+    </SessionProvider>
+  );
 };

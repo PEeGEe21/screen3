@@ -73,16 +73,16 @@ export default function UserProfileDropdown() {
     router.prefetch('/');
   }, []);
 
-  // const {data: session} = useSession();
+  const {data: session} = useSession();
 
   function handleSignOut(){
-    // signOut()
+    signOut()
   }
 
   return (
     <>
       <button
-        className="bg-[#F2F2F4] p-3 rounded-full h-12 w-12 hidden md:block"
+        className="bg-[#F2F2F4] p-3 rounded-full h-12 w-12"
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -104,8 +104,8 @@ export default function UserProfileDropdown() {
       >
         <MenuItem disableRipple>
           <span className="text-[#344054] text-sm flex items-center gap-2 py-1">
-            {/* {session ? session?.user?.email : ''} */}
-            bosemay04@gmail.com
+            {session ? session?.user?.email : 'bosemay04@gmail.com'}
+            
           </span>
         </MenuItem>
         <MenuItem onClick={handleSignOut} disableRipple className=" mt-3">

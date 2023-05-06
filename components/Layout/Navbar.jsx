@@ -40,14 +40,14 @@ const Navbar = ({ handleSidebarToggle }) => {
                 name="price"
                 id="price"
                 className=" py-2 px-4  block w-full pl-12 pr-12 sm:text-sm rounded-full h-full focus:outline-none focus:border-gray-400 bg-[#F6F5FE]"
-                placeholder="Search video names, tags, texts etc"
+                placeholder="Search video names, tags, texts etc" autoComplete='off'
               />
             </div>
           </div>
           {/* <div className="flex items-center justify-end gap-1 md:gap-5 px-1 md:px-4">
 
           </div> */}
-          <div className="font-normal flex items-center justify-end flex-row gap-3 w-full lg:w-4/12">
+          <div className="font-normal flex items-center justify-end flex-row gap-3 lg:w-4/12">
             <button className="bg-[#F2F2F4] p-3 rounded-full h-12 w-12 hidden md:block">
               <span className="flex items-center justify-center text-[#046ED1]">
                 <TagsIcon height="22" width="20" />

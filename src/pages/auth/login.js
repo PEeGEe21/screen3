@@ -54,22 +54,22 @@ const Login = () => {
 
   // Google Handler function
   async function handleGoogleLogin() {
-    signIn('google', { callbackUrl: 'http://localhost:3000' });
+    signIn('google', { callbackUrl: `${process.env.NEXT_PUBLIC_AUTH_URL}` });
   }
 
   // Github Handler function
   async function handleGithubLogin() {
-    signIn('github', { callbackUrl: 'http://localhost:3000' });
+    signIn('github', { callbackUrl: `${process.env.NEXT_PUBLIC_AUTH_URL}` });
   }
 
   // Github Facebook function
   async function handleFacebookLogin() {
-    signIn('facebook', { callbackUrl: 'http://localhost:3000' });
+    signIn('facebook', { callbackUrl: `${process.env.NEXT_PUBLIC_AUTH_URL}` });
   }
 
   // Github Apple function
   async function handleAppleLogin() {
-    signIn('apple', { callbackUrl: 'http://localhost:3000' });
+    signIn('apple', { callbackUrl: `${process.env.NEXT_PUBLIC_AUTH_URL}` });
   }
 
   return (

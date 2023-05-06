@@ -28,11 +28,18 @@
   --background-end-rgb: 255, 255, 255;
 } */
 
+*{
+  -webkit-tap-highlight-color: transparent; /* for removing the highlight */
+}
+
 body {
   /* color: rgb(var(--foreground-rgb)); */
   background: #fbfbff;
   font-family: 'Inter', Helvetica Neue, sans-serif !important;
+  /* --webkit-highlight */
 }
+
+
 
 .main-wrapper {
   background: #ffffff;
@@ -260,6 +267,32 @@ video {
   object-fit: cover;
 }
 
+.video__overlay .video__overlay_btn{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.video__overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: rgba(9, 3, 78, 0.5);
+  transition: all 0.2s;
+}
+
+.video:hover .video__overlay {
+  opacity: 1;
+  transition: all 0.2s;
+  pointer-events: none;
+
+}
+
 @keyframes animate-bar {
   from {
     width: 0%;
@@ -275,8 +308,6 @@ video {
 .menu-override {
   cursor: default;
 }
-
-
 
 /* Tags Input */
 
@@ -302,7 +333,6 @@ video {
   align-items: center;
   position: relative;
   /* justify-content: flex-start; */
-
 }
 
 /* .tags-input .label {
@@ -348,7 +378,7 @@ video {
   /* margin-left: 0.5rem; */
   /* background: transparent; */
   /* font-size: 20px; */
-  color: #807F88;
+  color: #807f88;
 }
 
 .tags-input .cross {
@@ -365,7 +395,6 @@ video {
   right: -5px;
   top: -5px;
   color: #ffffff;
-
 }
 
 /* .tags-input .cross:hover {
@@ -390,6 +419,156 @@ video {
 
 @media (max-width: 650px) {
   .tags-input.tag-area {
-      width: 100%;
+    width: 100%;
   }
+}
+
+textarea {
+  resize: none;
+}
+
+/* Emoji Picker */
+.button-container {
+  display: flex;
+  align-items: center;
+  /* color: white; */
+  gap: 1rem;
+  /* position: relative */
+}
+
+/* .emoji {
+  position: relative;
+} */
+.emoji svg {
+  font-size: 1rem;
+  /* color: #ffff00c8; */
+  cursor: pointer;
+  color: #fff;
+}
+.emoji aside.EmojiPickerReact {
+  /* position: absolute;
+  top: auto;
+  bottom: auto;
+  background-color: #080420;
+  box-shadow: 0 5px 10px #efefef;
+  border-color: #9a86f3;
+  bottom: 10;
+  right: 0; */
+    position: absolute !important;
+    top: auto; /* Adjust to position the picker as desired */
+    bottom: auto;
+    right: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* emojiPicker: {
+      position: "absolute",
+      bottom: 10,
+      right: 0,
+      cssFloat: "right",
+      marginLeft: "200px"
+    } */
+
+.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar {
+  background-color: blue;
+  width: 5px;
+}
+
+/* Style for the emoji picker container */
+.picker-container {
+  position: absolute;
+  bottom: 40px; /* Adjust to position the picker as desired */
+  right: 0;
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the emoji picker itself */
+.picker {
+  width: 300px;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+/* Style for the individual emoji */
+.emoji-item {
+  display: inline-block;
+  padding: 5px;
+}
+
+/* Style for the selected emoji */
+.selected-emoji {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+
+
+
+
+.sidebar__summary .summary_text {
+  background: linear-gradient(
+    179.78deg,
+    #344054 0.19%,
+    rgba(52, 64, 84, 0) 97.26%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.sidebar__summary .sidebar__upgrade__cta {
+  background: #ffffff;
+  /* box-shadow: 0px 4px 12px rgba(52, 64, 84, 0.06); */
+  border-radius: 16px;
+  padding: 20px 20px;
+  text-align: center;
+  padding-top: 48px;
+  margin-top: -80px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 48px
+  );
+  z-index: 9;
+  position: relative;
+}
+
+.sidebar__summary .sidebar__upgrade__cta button {
+  border: 1px solid #6457ef;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  color: #6457EF;
+}
+
+
+/* sidebar comments */
+.sidebar__comments .comments{
+    height: calc(100% - 50px); /* Set the height of the conversations area */
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* .sidebar__comments .comments{
+} */
+.sidebar__comments .comments::-webkit-scrollbar {
+  width: 0.2rem;
+}
+.sidebar__comments .comments::-webkit-scrollbar-track {
+  background-color: #fbfbff;
+  padding-top: 10px;
+  /* background-color: (rgb(48, 47, 47) 173, 173); */
+}
+.sidebar__comments .comments::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  width: 0.1rem;
+  background-color: #f3f3fe;
+
+  /* background-color: #45CD85; */
 }
