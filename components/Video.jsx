@@ -14,12 +14,13 @@ import MuteIcon from './Icons/MuteIcon';
 const Video = ({ screen, url, ...props }) => {
   const videoRef = useRef(null);
   const videoWrapperRef = useRef(null);
+  const initialPlayback = 1.0;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [videoTime, setVideoTime] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [playBackRate, setPlayBackRate] = useState(1);
+  const [jumpTime, setJumpTime] = useState(initialPlayback);
   const [isFullScreen, setIsFullscreen] = useState(false);
   const [volume, setVolume] = useState(1);
   const [muted, setMuted] = useState(false);
@@ -46,8 +47,12 @@ const Video = ({ screen, url, ...props }) => {
     // }
     if (isPlaying) {
       videoRef.current.pause();
+      setJumpTime(initialPlayback);
+      videoRef.current.playbackRate = jumpTime;
     } else {
       videoRef.current.play();
+      setJumpTime(initialPlayback);
+      videoRef.current.playbackRate = jumpTime;
     }
     setIsPlaying((currentPlayingState) => !isPlaying);
   };
@@ -95,16 +100,16 @@ const Video = ({ screen, url, ...props }) => {
   const speed = 0.5;
 
   const fastFowardHandler = () => {
-    setPlayBackRate((prevPlayBackRate) => prevPlayBackRate + speed);
+    // setJumpTime((prevJumpTime) => prevJumpTime + speed);
 
-    // if (jumpTime > 3) {
-    //   setJumpTime(1);
-    //   videoRef.current.playbackRate = jumpTime;
-    // } else {
-    //   setJumpTime((prevJumpTime) => prevJumpTime + speed);
-    //   videoRef.current.playbackRate = jumpTime;
-
-    // }
+    // console.log( Math.floor(jumpTime), 'parsefloat')
+    if (jumpTime > 4) {
+      setJumpTime(initialPlayback);
+      videoRef.current.playbackRate = jumpTime;
+    } else {
+      setJumpTime((prevJumpTime) => prevJumpTime + speed);
+      videoRef.current.playbackRate = jumpTime;
+    }
     // setVideoTime(Math.floor(videoRef.current.playbackRate))
 
     // videoRef.current.currentTime += FastForward_Factor;
@@ -120,6 +125,21 @@ const Video = ({ screen, url, ...props }) => {
     //FastFowards the video player by adding 10
     // videoPlayerRef.current.seekTo(videoPlayerRef.current.getCurrentTime() + 10);
   };
+
+  // useEffect(() => {
+  //   const handleLoadedMetadata = () => {
+  //     setVideoTime(videoRef.current.duration);
+  //   };
+  //   const handleDurationChange = () => {
+  //     setVideoTime(videoRef.current.duration);
+  //   };
+  //   videoRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
+  //   videoRef.current.addEventListener("durationchange", handleDurationChange);
+  //   return () => {
+  //     videoRef.current.removeEventListener("loadedmetadata", handleLoadedMetadata);
+  //     videoRef.current.removeEventListener("durationchange", handleDurationChange);
+  //   };
+  // }, []);
   return (
     <>
       <div
@@ -160,6 +180,13 @@ const Video = ({ screen, url, ...props }) => {
       <div className="pt-1 pb-4">
         {/* Progress bar */}
         <div className="time_progressbarContainer">
+          {/* <input
+            type="range"
+            min="0"
+            max="100"
+            value={playerState.progress}
+            onChange={(e) => handleVideoProgress(e)}
+          /> */}
           <div
             style={{
               //   width: `${15}%`,
@@ -192,7 +219,7 @@ const Video = ({ screen, url, ...props }) => {
               className="bg-[#EEEEF0B8] rounded-lg px-4 py-3  flex justify-center items-center text-[#344054] text-xs"
               onClick={fastFowardHandler}
             >
-              {playBackRate}x
+              {jumpTime}x
             </button>
             <span className="bg-[#EEEEF0B8] rounded-lg px-4 py-3  justify-center items-center gap-2 text-[#ADAEB0] text-xs hidden md:flex">
               <CommentIcon />

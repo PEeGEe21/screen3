@@ -11,21 +11,27 @@ import ShareIcon from '../Icons/ShareIcon';
 import Image from 'next/image';
 import NewScreenDropdown from '../Dropdowns/NewScreenDropdown';
 import TagsIcon from '../Icons/TagsIcon';
+import CloseIcon from '../Icons/CloseIcon';
 
-const Sidebar = ({ toggleCollapse }) => {
+const Sidebar = ({ toggleCollapse, isMininmized, toggleSidebar}) => {
   const [isCollapsible, setIsCollapsible] = useState(true);
   const [isDropdown, setIsDropdown] = useState(true);
 
   const showDropdown = () => {
     setIsDropdown(!isDropdown);
+
   };
+
+
   const router = useRouter();
 
   const wrapperClasses = classNames(
-    'h-full sidebar pb-4 flex justify-between scrollbar-change flex-col overflow-y-auto overflow-x-hidden ',
+    'h-full sidebar pb-4 flex justify-between scrollbar-change flex-col overflow-y-auto overflow-x-hidden fixed z-40 md:relative bg-[#fbfbff]',
     {
-      ['w-60']: !toggleCollapse,
-      ['w-20']: toggleCollapse,
+      ['md:w-60']: !toggleCollapse,
+      ['md:w-20']: toggleCollapse,
+      ['w-0']: !isMininmized,
+      ['w-60']: isMininmized,
     }
   );
 
@@ -46,9 +52,18 @@ const Sidebar = ({ toggleCollapse }) => {
         className={wrapperClasses}
         style={{
           transition: 'width 100ms ease-in-out 0s ',
+
         }}
       >
-        <div className="h-full flex flex-col justify-between">
+        <div className="h-full flex flex-col justify-between relative">
+          <button
+            className=" flex items-center rounded-full border-2 border-gray-900 absolute top-3 right-2 md:hidden  pointer z-20"
+            onClick={toggleSidebar}
+          >
+            <span className="pointer-events-none flex items-center p-1">
+              <CloseIcon />
+            </span>
+          </button>
           <div className="flex flex-col mb-3">
             <div className="flex items-center justify-center py-5 relative h-20 overflow-hidden">
               {!toggleCollapse ? (

@@ -12,7 +12,7 @@ import Comments from '../ScreenSidebarComponents/Comments';
 const ScreenSidebar = () => {
   return (
     <>
-      <div className="rounded-lg p-4 lg:p-0 sticky z-50 top-2 transition-all duration-200 ease-linear text-sm bg-[#fbfbff] ">
+      <div className="rounded-lg p-2 lg:p-0 md:sticky z-50 top-2 transition-all duration-200 ease-linear text-sm bg-[#fbfbff] ">
         <div className="pb-2 h-full">
           <Tabs>
             <div className="flex items-center mb-4 ">
@@ -44,7 +44,7 @@ const ScreenSidebar = () => {
               </TabList>
             </div>
 
-            <div className="py-3 px-4">
+            <div className="py-3 lg:px-4">
               <TabPanel>
                 <div className=" w-full  mt-3 md:mt-0 rounded h-screen fade-in relative sidebar__comments">
                   <div className="relative h-full">

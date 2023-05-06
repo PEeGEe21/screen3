@@ -10,6 +10,13 @@ const Layout = ({ children }) => {
 
   const [toggleCollapse, setToggleCollapse] = useState(false);
   const [openWelcomeModal, setOpenWelcomeModal] = React.useState(false);
+  const [isMininmized, setIsMinimized] = useState(false);
+
+
+  const toggleSidebar = () => {
+    setIsMinimized(!isMininmized);
+
+  };
 
   const handleSidebarToggle = () => {
     setToggleCollapse(!toggleCollapse);
@@ -38,9 +45,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <div className="h-screen flex flex-row justify-start">
-        <Sidebar toggleCollapse={toggleCollapse} />
+        <Sidebar toggleCollapse={toggleCollapse} isMininmized={isMininmized} toggleSidebar={toggleSidebar}/>
         <div className="flex-1 h-full overflow-y-auto border-l-0">
-          <Navbar handleSidebarToggle={handleSidebarToggle} />
+          <Navbar handleSidebarToggle={handleSidebarToggle} toggleSidebar={toggleSidebar}/>
 
           <div className="main-wrapper ">
             <div className="h-full py-10 px-4 md:px-12">{children}</div>

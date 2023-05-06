@@ -5,7 +5,7 @@ import SearchIcon from '../Icons/SearchIcon';
 import TagsIcon from '../Icons/TagsIcon';
 import ToggleIcon from '../Icons/ToggleIcon';
 
-const Navbar = ({ handleSidebarToggle }) => {
+const Navbar = ({ handleSidebarToggle, toggleSidebar }) => {
   return (
     <>
       <div className="header py-3 w-full  h-20 flex items-center">
@@ -22,7 +22,16 @@ const Navbar = ({ handleSidebarToggle }) => {
             </button> */}
             <button
               onClick={handleSidebarToggle}
-              className="hover:bg-[#F3F3FE] focus:outline-none px-3 transition duration-200 ease-in-out rounded-md"
+              className="hover:bg-[#F3F3FE] focus:outline-none px-3 transition duration-200 ease-in-out rounded-md hidden md:block"
+            >
+              <span className="text-[#7F8691]">
+                <ToggleIcon />
+              </span>
+            </button>
+
+            <button
+              onClick={toggleSidebar}
+              className="hover:bg-[#F3F3FE] focus:outline-none px-3 transition duration-200 ease-in-out rounded-md block md:hidden"
             >
               <span className="text-[#7F8691]">
                 <ToggleIcon />
