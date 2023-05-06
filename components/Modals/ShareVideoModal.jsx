@@ -16,7 +16,7 @@ const ShareVideoModal = ({ show, dismiss, screen, screen_id }) => {
             {/* <div>
               <SummaryIcon />
             </div> */}
-            <h1 className="text-[#0B0A1D] text-xl">Share "{screen?.name}"</h1>
+            <h1 className="text-[#0B0A1D] text-xl">Share &ldquo;{screen?.name}&rdquo;</h1>
             <button className="flex items-center text-white bg-[#6457EF] px-4 py-2 text-sm mt-0 md:mt-0 rounded-lg h-10 gap-2">
               <span className="">
                 <CopyIcon />
